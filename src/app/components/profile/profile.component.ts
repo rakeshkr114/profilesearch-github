@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {GithubService} from '../../services/github.service'
+import { GithubService } from '../../services/github.service'
 
 
 @Component({
@@ -9,12 +9,24 @@ import {GithubService} from '../../services/github.service'
 })
 export class ProfileComponent implements OnInit {
 
-  user:any[];
-  constructor(private _githubservice:GithubService){
+  user: any[];
+  repos: any[];
+  username: string;
+  constructor(private _githubservice: GithubService) {
+   
+  }
+
+  searchUser() {
+
+    this._githubservice.updateUser(this.username);
     this._githubservice.getUser().subscribe(user => {
-        this.user=user;
-    })
- }
+      this.user = user;
+    });
+
+    this._githubservice.getUser().subscribe(repos => {
+      this.repos = repos;
+    });
+  }
 
   ngOnInit() {
   }
