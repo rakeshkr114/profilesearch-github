@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
       this.user = user;
     });
 
-    this._githubservice.getUser().subscribe(repos => {
+    this._githubservice.getRepos().subscribe(repos => {
       this.repos = repos;
     });
   }
